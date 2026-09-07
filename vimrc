@@ -1,0 +1,1 @@
+/mnt/c/Users/45359/.vim/vimrc
