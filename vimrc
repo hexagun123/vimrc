@@ -1,4 +1,4 @@
-" ==============================================================================
+"==============================================================================
 "  LEADER & CORE CONFIG {{{
 " ==============================================================================
 let mapleader = " "
@@ -32,6 +32,9 @@ Plug 'tpope/vim-commentary'
 " Fuzzy Search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+" Check Style
+Plug 'dense-analysis/ale'
 
 call plug#end()
 " }}}
@@ -94,6 +97,21 @@ set hlsearch
 
 " System Clipboard
 set clipboard=unnamedplus
+
+" formating
+let g:asmsyntax = 'gas'
+autocmd FileType asm setlocal commentstring=#\ %s
+"
+" check style
+" Enable checkstyle for Java
+let g:ale_linters = {
+\   'java': ['checkstyle'],
+\ }
+
+" Point checkstyle to your custom checkstyle.xml file
+let g:ale_java_checkstyle_executable = 'checkstyle'
+" let g:ale_java_checkstyle_options = '-c /path/to/your/checkstyle.xml'
+
 " }}}
 
 " ==============================================================================
@@ -104,6 +122,7 @@ let g:coc_global_extensions = [
   \ 'coc-pyright',
   \ 'coc-tsserver',
   \ 'coc-java',
+  \ 'coc-python',
   \ 'coc-clangd'
   \ ]
 
@@ -152,6 +171,7 @@ nnoremap <leader>q :bd<CR>
 nnoremap <leader>o :Explore<CR>
 nnoremap <leader>h :nohlsearch<CR>
 nnoremap <leader>w :!git add %<CR>
+nmap <leader>k gcc
 
 " --- Fuzzy Search (fzf.vim) ---
 nnoremap <leader>f :Files<CR>
@@ -183,6 +203,7 @@ nnoremap <leader>a ggyG
 vnoremap <Backspace> "_d
 vnoremap <C-v> "_d"+P
 vnoremap <C-x> "+y<Esc>gv"_d
+xmap <leader>k gc
 " }}}
 
 " ==============================================================================
